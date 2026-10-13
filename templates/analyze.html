@@ -101,7 +101,24 @@
     </p>
 
     <form action="/analyze" method="POST">
-        <textarea
+        <<form action="/analyze" method="POST" id="messageForm">
+    <textarea
+        id="messageInput"
+        name="message"
+        placeholder="Start typing or paste your suspicious message here..."
+        required
+    ></textarea>
+
+```
+<div id="liveAnalysis" class="notice" aria-live="polite">
+    Start typing to check for potential warning signs.
+</div>
+
+<button type="submit">Analyze Message</button>
+```
+
+</form>
+
             name="message"
             placeholder="Paste your suspicious message here..."
             required
@@ -143,6 +160,103 @@
     <p><a href="/">← Back to Home</a></p>
 </main>
 ```
+<script>
+const messageInput = document.getElementById("messageInput");
+const liveAnalysis = document.getElementById("liveAnalysis");
 
+const warningRules = [
+    {
+        pattern: /\burgent\b/i,
+        message: "Urgent language may be pressuring you to act quickly."
+    },
+    {
+        pattern: /verify your account/i,
+        message: "The message asks you to verify your account."
+    },
+    {
+        pattern: /click here/i,
+        message: "The message encourages you to click a link."
+    },
+    {
+        pattern: /send money|transfer money|pay immediately/i,
+        message: "The message requests a payment or money transfer."
+    },
+    {
+        pattern: /\b(password|OTP|PIN)\b/i,
+        message: "The message mentions sensitive security credentials."
+    },
+    {
+        pattern: /win a prize|claim your prize/i,
+        message: "The message makes a prize-related claim."
+    },
+    {
+        pattern: /account suspended|account blocked/i,
+        message: "The message threatens account suspension or blocking."
+    },
+    {
+        pattern: /limited time|immediately/i,
+        message: "The message uses time-pressure language."
+    }
+];
+
+messageInput.addEventListener("input", function () {
+    const message = messageInput.value.trim();
+
+    if (!message) {
+        liveAnalysis.textContent =
+            "Start typing to check for potential warning signs.";
+        return;
+    }
+
+    const findings = warningRules.filter(rule =>
+        rule.pattern.test(message)
+    );
+
+    if (findings.length >= 3) {
+        liveAnalysis.replaceChildren();
+
+        const heading = document.createElement("strong");
+        heading.textContent = "Potential risk: HIGH";
+        liveAnalysis.appendChild(heading);
+
+    } else if (findings.length >= 1) {
+        liveAnalysis.replaceChildren();
+
+        const heading = document.createElement("strong");
+        heading.textContent = "Potential risk: MEDIUM";
+        liveAnalysis.appendChild(heading);
+
+    } else {
+        liveAnalysis.replaceChildren();
+
+        const heading = document.createElement("strong");
+        heading.textContent = "No matching warning phrases detected";
+        liveAnalysis.appendChild(heading);
+    }
+
+    if (findings.length > 0) {
+        const list = document.createElement("ul");
+
+        findings.forEach(function (finding) {
+            const item = document.createElement("li");
+            item.textContent = finding.message;
+            list.appendChild(item);
+        });
+
+        liveAnalysis.appendChild(list);
+    } else {
+        const note = document.createElement("p");
+        note.textContent =
+            "No matching warning phrases were found. " +
+            "This does not guarantee that the message is safe.";
+        liveAnalysis.appendChild(note);
+    }
+
+    const disclaimer = document.createElement("p");
+    disclaimer.textContent =
+        "This is a basic rule-based check, not proof of fraud.";
+    liveAnalysis.appendChild(disclaimer);
+});
+</script>
 </body>
 </html>
