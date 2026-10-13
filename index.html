@@ -1,99 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FraudGenome AI | Speech Analysis</title>
+    <title>FraudGenome AI | Home</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 34px;
+        }
+
+        header p {
+            margin: 0;
+            color: #cbd5e1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .welcome h2 {
+            color: #0f766e;
+            font-size: 28px;
+        }
+
+        .welcome p {
+            line-height: 1.7;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 48px;
+        }
+
+        .card h3 {
+            color: #0f766e;
+            font-size: 23px;
+        }
+
+        .card p {
+            line-height: 1.7;
+            min-height: 75px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #0f766e;
+            color: white;
+            text-decoration: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #115e59;
+        }
+
+        .notice {
+            margin-top: 30px;
+            padding: 18px;
+            background: #e0f2fe;
+            border-radius: 10px;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 650px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h2 {
+                font-size: 23px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <header>
         <h1>FraudGenome AI</h1>
-
-        <p>Speech-to-Text & Call Analysis</p>
+        <p>Your Digital Scam Detection Assistant</p>
     </header>
 
     <main class="container">
 
         <section class="welcome">
-            <h2>Analyse Suspicious Conversations</h2>
+            <h2>Welcome to FraudGenome AI</h2>
 
             <p>
-                Convert spoken words into text and identify
-                potential scam warning signs.
-            </p>
-        </section>
-
-        <section class="transcription">
-
-            <h3>Speech Recognition</h3>
-
-            <p>
-                Click the button below and speak into your microphone.
+                Identify potential scam warning signs in suspicious
+                messages and conversations using our analysis tools.
             </p>
 
-            <button id="startBtn">
-                🎤 Start Speaking
-            </button>
-
-            <button id="stopBtn" disabled>
-                ⏹ Stop Speaking
-            </button>
-
-            <p id="status">
-                Status: Ready
-            </p>
-
+            <p>Choose the analyzer you would like to use below.</p>
         </section>
 
-        <section class="transcript-section">
+        <section class="cards">
 
-            <h3>Transcribed Conversation</h3>
-<hr>
+            <div class="card">
+                <div class="icon">📨</div>
 
-<h3>Upload a Call Recording</h3>
+                <h3>Message Analyzer</h3>
 
-<p>Select a supported audio recording for transcription.</p>
+                <p>
+                    Paste a suspicious SMS, email, or WhatsApp message
+                    to check for common signs of fraud.
+                </p>
 
-<input
-    type="file"
-    id="audioFile"
-    accept="audio/*"
->
+                <a href="/analyze-page" class="button">
+                    Analyze a Message
+                </a>
+            </div>
 
-<p id="audioStatus">
-    No audio file selected.
-</p>
+            <div class="card">
+                <div class="icon">🎤</div>
 
-<button id="transcribeFileBtn">
-    Transcribe Audio File
-</button>
-            <textarea
-                id="transcript"
-                placeholder="Your recognised speech will appear here..."
-            ></textarea>
+                <h3>Speech Analyzer</h3>
 
-            <button id="analyzeBtn">
-                Analyse Transcript
-            </button>
+                <p>
+                    Use your microphone to capture speech or select
+                    an audio recording for conversation analysis.
+                </p>
 
-        </section>
-
-        <section class="results">
-
-            <h3>Analysis Results</h3>
-
-            <div id="results">
-                Your analysis results will appear here.
+                <a href="/speech-page" class="button">
+                    Open Speech Analyzer
+                </a>
             </div>
 
         </section>
+
+        <div class="notice">
+            <strong>Important:</strong>
+            FraudGenome AI identifies potential warning signs.
+            Its results cannot guarantee that a message or conversation
+            is safe or fraudulent.
+        </div>
 
     </main>
 
@@ -101,8 +193,5 @@
         <p>FraudGenome AI | Protecting People from Digital Scams</p>
     </footer>
 
-    <script src="script.js"></script>
-
 </body>
-
 </html>

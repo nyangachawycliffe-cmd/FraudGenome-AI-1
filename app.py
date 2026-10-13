@@ -11,7 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent
 @app.route("/")
 def home():
     return send_from_directory(BASE_DIR, "index.html")
-
+@app.route("/speech-page")
+def speech_page():
+    return render_template("speech.html")
 
 @app.route("/analyze-page")
 def analyze_page():

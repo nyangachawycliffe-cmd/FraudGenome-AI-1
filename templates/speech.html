@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FraudGenome AI | Speech Analysis</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>FraudGenome AI</h1>
+
+        <p>Speech-to-Text & Call Analysis</p>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h2>Analyse Suspicious Conversations</h2>
+
+            <p>
+                Convert spoken words into text and identify
+                potential scam warning signs.
+            </p>
+        </section>
+
+        <section class="transcription">
+
+            <h3>Speech Recognition</h3>
+
+            <p>
+                Click the button below and speak into your microphone.
+            </p>
+
+            <button id="startBtn">
+                🎤 Start Speaking
+            </button>
+
+            <button id="stopBtn" disabled>
+                ⏹ Stop Speaking
+            </button>
+
+            <p id="status">
+                Status: Ready
+            </p>
+
+        </section>
+
+        <section class="transcript-section">
+
+            <h3>Transcribed Conversation</h3>
+<hr>
+
+<h3>Upload a Call Recording</h3>
+
+<p>Select a supported audio recording for transcription.</p>
+
+<input
+    type="file"
+    id="audioFile"
+    accept="audio/*"
+>
+
+<p id="audioStatus">
+    No audio file selected.
+</p>
+
+<button id="transcribeFileBtn">
+    Transcribe Audio File
+</button>
+            <textarea
+                id="transcript"
+                placeholder="Your recognised speech will appear here..."
+            ></textarea>
+
+            <button id="analyzeBtn">
+                Analyse Transcript
+            </button>
+
+        </section>
+
+        <section class="results">
+
+            <h3>Analysis Results</h3>
+
+            <div id="results">
+                Your analysis results will appear here.
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>FraudGenome AI | Protecting People from Digital Scams</p>
+    </footer>
+
+    <<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
