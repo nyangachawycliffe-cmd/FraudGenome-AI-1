@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Message | FraudGenome AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+
+```
+    header {
+        background: #0f172a;
+        color: white;
+        padding: 22px;
+        text-align: center;
+    }
+
+    main {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 25px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+        color: #0f766e;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 180px;
+        padding: 12px;
+        box-sizing: border-box;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 16px;
+        resize: vertical;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 12px 20px;
+        background: #0f766e;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #115e59;
+    }
+
+    .notice {
+        margin-top: 20px;
+        padding: 12px;
+        background: #ecfeff;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    a {
+        color: #0f766e;
+        text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+        main {
+            margin: 20px;
+            padding: 18px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+
+```
+<header>
+    <h1>FraudGenome AI</h1>
+    <p>Suspicious Message Analyzer</p>
+</header>
+
+<main>
+    <h2>Analyze a Suspicious Message</h2>
+
+    <p>
+        Paste a suspicious SMS, email, or WhatsApp message below
+        to check for common signs of fraud.
+    </p>
+
+    <form action="/analyze" method="POST">
+        <textarea
+            name="message"
+            placeholder="Paste your suspicious message here..."
+            required
+        ></textarea>
+
+        <button type="submit">Analyze Message</button>
+    </form>
+
+    <div class="notice">
+        <strong>Important:</strong>
+        This tool can identify common warning signs, but it cannot
+        guarantee that a message is safe or fraudulent.
+    </div>
+{% if risk %} <section style="margin-top: 25px; padding: 18px; background: #f8fafc; border-radius: 8px;"> <h2>Analysis Results</h2>
+
+```
+    <p>
+        <strong>Risk Level:</strong>
+        <span>{{ risk }}</span>
+    </p>
+
+    {% if findings %}
+        <h3>Warning Signs Found</h3>
+        <ul>
+            {% for finding in findings %}
+                <li>{{ finding }}</li>
+            {% endfor %}
+        </ul>
+    {% elif risk == "Low" %}
+        <p>No matching warning phrases were found. This does not guarantee the message is safe.</p>
+    {% else %}
+        <p>{{ result }}</p>
+    {% endif %}
+</section>
+```
+
+{% endif %}
+
+    <p><a href="/">← Back to Home</a></p>
+</main>
+```
+
+</body>
+</html>
